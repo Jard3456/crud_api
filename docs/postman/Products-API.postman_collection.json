@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "Products API - Laravel CRUD",
+    "description": "Colección para demostrar el CRUD de productos en Postman.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api"
+    },
+    {
+      "key": "product_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Listar productos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/products?per_page=10"
+      }
+    },
+    {
+      "name": "Buscar productos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/products?search=mouse&active=true"
+      }
+    },
+    {
+      "name": "Crear producto",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Monitor 24 pulgadas\",\n  \"description\": \"Monitor Full HD.\",\n  \"price\": 1299.99,\n  \"stock\": 8,\n  \"active\": true\n}"
+        },
+        "url": "{{base_url}}/products"
+      }
+    },
+    {
+      "name": "Crear producto - validación",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": "{{base_url}}/products"
+      }
+    },
+    {
+      "name": "Consultar producto",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/products/{{product_id}}"
+      }
+    },
+    {
+      "name": "Actualizar producto",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stock\": 20,\n  \"active\": true\n}"
+        },
+        "url": "{{base_url}}/products/{{product_id}}"
+      }
+    },
+    {
+      "name": "Eliminar producto",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": "{{base_url}}/products/{{product_id}}"
+      }
+    }
+  ]
+}
