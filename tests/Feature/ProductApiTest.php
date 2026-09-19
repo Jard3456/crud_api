@@ -3,12 +3,26 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class ProductApiTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Passport::actingAs(User::factory()->create(), [
+            'products:read',
+            'products:create',
+            'products:update',
+            'products:delete',
+        ]);
+    }
 
     public function test_products_can_be_listed(): void
     {
